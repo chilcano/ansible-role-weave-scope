@@ -2,7 +2,7 @@
 dependencies: []
 galaxy_info:
   author: Roger Carhuatocto
-  description: An Ansible Role that installs and configures Istio (https://istio.io) on an OpenShift cluster running locally that has been installed by using Minishift (https://www.openshift.org/minishift).
+  description: An Ansible Role that deploy Weave Scope (https://github.com/weaveworks/scope) in an OpenShift cluster running locally, generally created by using Minishift (https://www.openshift.org/minishift).
   company: HolisticSecurity.io
   license: MIT
   min_ansible_version: 2.3
@@ -28,9 +28,6 @@ galaxy_info:
     - minishift
     - container
     - docker
-    - oc
-    - istio
-    - api
-    - mesh
-    - sidecar
-    - ambassador
+    - api-mesh
+    - monitoring
+    - observability
