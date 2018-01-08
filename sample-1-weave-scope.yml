@@ -1,0 +1,12 @@
+---
+# https://github.com/weaveworks/scope
+- name: Install Weave Scope.
+  hosts: Pisc0
+  connection: local
+  gather_facts: yes
+  vars:
+    hostname_and_profile: openshift0
+
+  roles:
+    #- role: ansible-role-istio
+    #- role: chilcano.minishift
