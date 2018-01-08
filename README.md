@@ -7,19 +7,16 @@ This Role performs the following tasks:
 - Downloads and installs the specified version or latest of Weave Scope.
 - Uses the latest `oc` binary from `~/.minishift/cache/oc/<VERSION>/<OS>/` to deploy Weave Scope.
 
-## Prerequisites
-
-- Ansible 2.3+
-- Prior to running the role, clear your terminal session of any DOCKER* environment variables.
-- OpenShift running locally. See `https://galaxy.ansible.com/chilcano/minishift` to get OpenShift running in a VM.
-
 ## Observations
 
 The Weave Scope Ansible Role has been tested with:
+- Ansible 2.3+
 - minishift v1.11.0+4459917
 - kubernetes 3.7
 - VirtualBox 5.1.30
 - macOS High Sierra, version 10.13.2 (17C88)
+- Prior to running the role, clear your terminal session of any DOCKER* environment variables.
+- OpenShift running locally. See `https://galaxy.ansible.com/chilcano/minishift` to get OpenShift running in a VM.
 
 ## Default Role variables
 
