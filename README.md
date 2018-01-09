@@ -1,10 +1,14 @@
 # Ansible Role: Weave Scope
 
-An Ansible Role that deploy Weave Scope (https://github.com/weaveworks/scope) in an OpenShift cluster running locally, generally created by using Minishift (https://www.openshift.org/minishift).
+An Ansible Role that deploys Weave-Scope (https://github.com/weaveworks/scope) in an OpenShift cluster running locally, generally created by using Minishift (https://www.openshift.org/minishift).
+
+Weave Scope is a Monitoring, visualisation & management Tool for Docker & Kubernetes.
+For further details here: https://github.com/weaveworks/scope
+
 This Role performs the following tasks:
 
 - Check if OpenShift is running locally.
-- Downloads and installs the specified version or latest of Weave Scope.
+- Installs from Internet or local.
 - Uses the latest `oc` binary from `~/.minishift/cache/oc/<VERSION>/<OS>/` to deploy Weave Scope.
 
 ## Observations
@@ -12,11 +16,10 @@ This Role performs the following tasks:
 The Weave Scope Ansible Role has been tested with:
 - Ansible 2.3+
 - minishift v1.11.0+4459917
-- kubernetes 3.7
 - VirtualBox 5.1.30
 - macOS High Sierra, version 10.13.2 (17C88)
 - Prior to running the role, clear your terminal session of any DOCKER* environment variables.
-- OpenShift running locally. See `https://galaxy.ansible.com/chilcano/minishift` to get OpenShift running in a VM.
+- Weave Scope requires access to OpenShift running locally and an `system` account. If you want to get an OpenShift instance running locally, please, see `https://galaxy.ansible.com/chilcano/minishift` to get a VM with OpenShift.
 
 ## Default Role variables
 

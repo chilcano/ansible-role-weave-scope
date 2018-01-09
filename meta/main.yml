@@ -2,7 +2,7 @@
 dependencies: []
 galaxy_info:
   author: Roger Carhuatocto
-  description: An Ansible Role that deploy Weave Scope (https://github.com/weaveworks/scope) in an OpenShift cluster running locally, generally created by using Minishift (https://www.openshift.org/minishift).
+  description: An Ansible Role that deploys Weave-Scope (https://github.com/weaveworks/scope) in an OpenShift cluster running locally, generally created by using Minishift (https://www.openshift.org/minishift).
   company: HolisticSecurity.io
   license: MIT
   min_ansible_version: 2.3

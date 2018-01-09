@@ -3,7 +3,7 @@
   set_fact:
      __weavescope: "{{ weave_scope_defaults | combine(weave_scope, recursive=True) }}"
 
-- name: Set path to 'oc'
+- name: Set path to 'oc'.
   include: set_oc.yml
 
 - name: Login to active Minishift instance/Openshift Cluster.
@@ -12,10 +12,6 @@
 - name: Clean previous Weave-Scope installation.
   include: clean.yml
   when: __weavescope.action_to_trigger == 'clean'
-
-- name: Deploy Weave-Scope
-  include: deploy.yml
-  when: __weavescope.action_to_trigger == 'deploy'
 
 - name: Deploy Weave-Scope App.
   include: deploy.yml

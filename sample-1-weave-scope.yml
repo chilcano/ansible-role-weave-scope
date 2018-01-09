@@ -1,5 +1,4 @@
 ---
-# https://github.com/weaveworks/scope
 - name: Install Weave Scope.
   hosts: Pisc0
   connection: local
@@ -8,5 +7,14 @@
     hostname_and_profile: openshift0
 
   roles:
-    #- role: ansible-role-istio
-    #- role: chilcano.minishift
+    - role: chilcano.weave-scope
+      weave_scope:
+        minishift:
+          profile: "{{ hostname_and_profile }}"
+        openshift:
+          admin_usr: "system:admin"
+          admin_pwd: anypassword
+          hostname: "{{ hostname_and_profile }}"
+        #repo: https://cloud.weave.works/k8s/scope.yaml   ## default
+        repo: /Users/Chilcano/Downloads/__kube_repo/weave-scope/scope.yaml
+        action_to_trigger: deploy  # [ deploy | clean ]

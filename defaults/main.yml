@@ -7,8 +7,7 @@ weave_scope_defaults:
     admin_pwd: anypassword
     hostname: openshift0
     project: "weave-scope"
-  #repo: https://cloud.weave.works/k8s/scope.yaml
-  repo: /Users/Chilcano/Downloads/__kube_repo/weave-scope/scope.yaml
+  repo: https://cloud.weave.works/k8s/scope.yaml
   dir:
     local_repo: /Users/Chilcano/Downloads/__kube_repo
     local_tmp: /Users/Chilcano/Downloads/__kube_tmp
