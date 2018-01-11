@@ -51,9 +51,33 @@ Run the playbook:
 $ ansible-playbook -i inventory --ask-become-pass sample-1-weave-scope.yml
 ```
 
-In order to get access to Weave Scope from browser, we should forward the Weave Scope's port (`4040`) to the Host. In other words we have to execute this command:
+In order to get access to Weave Scope from browser, we should forward the Weave Scope's port to the Host's port. Considering the Weave Scope App listens, by default, on the port `4040`, then to forward to host's port on `4040` to use next command:
 ```
 $ oc port-forward -n weave-scope "$(oc get -n weave-scope pod --selector=weave-scope-component=app -o jsonpath='{.items..metadata.name}')" 4040
+```
+Or
+```
+$ oc port-forward -n weave-scope "$(oc get -n weave-scope pod --selector=weave-scope-component=app -o jsonpath='{.items..metadata.name}')" 4040:4040
+Forwarding from 127.0.0.1:4040 -> 4040
+Forwarding from [::1]:4040 -> 4040
+Handling connection for 4040
+Handling connection for 4040
+Handling connection for 4040
+Handling connection for 4040
+...
+```
+
+To forward to host's port on `4041` to use the next command:
+```
+$ oc port-forward -n weave-scope "$(oc get -n weave-scope pod --selector=weave-scope-component=app -o jsonpath='{.items..metadata.name}')" 4041:4040
+Forwarding from 127.0.0.1:4041 -> 4040
+Forwarding from [::1]:4041 -> 4040
+Handling connection for 4041
+Handling connection for 4041
+Handling connection for 4041
+Handling connection for 4041
+Handling connection for 4041
+...
 ```
 
 Once done, open your browser with this URL and you could visualize all Pods, Containers, Controllers, etc. of your OpenShift Cluster.
