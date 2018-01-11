@@ -51,6 +51,24 @@ Run the playbook:
 $ ansible-playbook -i inventory --ask-become-pass sample-1-weave-scope.yml
 ```
 
+In order to get access to Weave Scope from browser, we should forward the Weave Scope's port (`4040`) to the Host. In other words we have to execute this command:
+```
+$ oc port-forward -n weave-scope "$(oc get -n weave-scope pod --selector=weave-scope-component=app -o jsonpath='{.items..metadata.name}')" 4040
+```
+
+Once done, open your browser with this URL and you could visualize all Pods, Containers, Controllers, etc. of your OpenShift Cluster.
+
+
+* Exploring OpenShift with Weave Scope.
+
+![Exploring OpenShift with Weave Scope](https://github.com/chilcano/ansible-role-weave-scope/blob/master/imgs/api-mesh-security-2-weave-scope.png "Exploring OpenShift with Weave Scope")
+
+
+* Exploring in depth the API Mesh.
+
+![Exploring in depth the API Mesh](https://github.com/chilcano/ansible-role-weave-scope/blob/master/imgs/api-mesh-security-9-weave-scope-bookinfo-mesh.png "Exploring in depth the API Mesh")
+
+
 ## License
 
 MIT / BSD
