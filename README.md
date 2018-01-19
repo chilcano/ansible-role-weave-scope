@@ -25,10 +25,6 @@ The Weave Scope Ansible Role has been tested with:
 
 The default variables are in `defaults/main.yml`.
 
-## Example Playbook
-
-See `sample-1-weave-scope.yml` file for an example.
-
 ## Using the Ansible Role
 
 Install the role:
@@ -41,7 +37,7 @@ Copy the playbook from your roles path to the current working directory:
 $ cp ${ANSIBLE_ROLES_PATH}/chilcano.weave-scope/sample-1-weave-scope.yml .
 ```
 
-Create an `inventory` file
+Create an `inventory` file:
 ```
 $ echo $(hostname) > ./inventory
 ```
@@ -50,6 +46,10 @@ Run the playbook:
 ```
 $ ansible-playbook -i inventory --ask-become-pass sample-1-weave-scope.yml
 ```
+
+### Access to Weave Scope from a browser
+
+__Port forwarding__
 
 In order to get access to Weave Scope from browser, we should forward the Weave Scope's port to the Host's port. Considering the Weave Scope App listens, by default, on the port `4040`, then to forward to host's port on `4040` to use next command:
 ```
@@ -80,8 +80,39 @@ Handling connection for 4041
 ...
 ```
 
-Once done, open your browser with this URL and you could visualize all Pods, Containers, Controllers, etc. of your OpenShift Cluster.
+Once done, open your browser with the `http://127.0.0.1:4041` URL and you could visualize all Pods, Containers, Controllers, etc. of your OpenShift Cluster.
 
+__NodePort Services__
+
+Add a new LoadBalancer Service to expose `weave-scope-app` service:
+```
+$ oc apply -f ${ANSIBLE_ROLES_PATH}/chilcano.weave-scope/sample-2-kube-weavescope-lb.yml
+```
+
+Opening Weave Scope from Minishift automatically:
+```
+$ minishift openshift service weave-scope-app-lb --in-browser
+Opening the route/NodePort http://192.168.99.100:32689 in the default browser...
+```
+
+Or opening it manually:
+```
+$ eval $(minishift oc-env)
+$ oc login -u system:admin
+$ oc project weave-scope
+Now using project "weave-scope" on server "https://192.168.99.100:8443".
+
+$ oc get svc/weave-scope-app-lb -o yaml | grep -i nodeport
+    nodePort: 32689
+
+$ minishift ip
+192.168.99.100
+```
+
+Now, you can open your browser with the `http://192.168.99.100:32689` URL.
+
+
+## Screenshots
 
 * Exploring OpenShift with Weave Scope.
 
