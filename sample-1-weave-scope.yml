@@ -9,12 +9,13 @@
   roles:
     - role: chilcano.weave-scope
       weave_scope:
+        action_to_trigger: deploy  # [ deploy | clean ]
         minishift:
           profile: "{{ vm }}"
         openshift:
           admin_usr: "system:admin"
           admin_pwd: anypassword
           hostname: "{{ vm }}"
-        #repo: https://cloud.weave.works/k8s/scope.yaml   ## default
-        repo: /Users/Chilcano/Downloads/__kube_repo/weave-scope/scope.yaml
-        action_to_trigger: deploy  # [ deploy | clean ]
+          project: weave-scope
+        #repo: https://cloud.weave.works/k8s/scope.yaml   ## latest (if version > 1.7.0, then namespace/project must be 'weave'. It has been defined as default)
+        repo: /Users/Chilcano/Downloads/__kube_repo/weave-scope/scope_1.6.7.yaml
