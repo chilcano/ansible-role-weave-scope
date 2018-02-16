@@ -74,11 +74,16 @@ Handling connection for 4041
 ...
 ```
 
+If you have deployed in the `weave` namespace, change it before. The updated command will be:
+```
+$ oc port-forward -n weave "$(oc get -n weave pod --selector=weave-scope-component=app -o jsonpath='{.items..metadata.name}')" 4041:4040
+```
+
 Once done, open your browser with the `http://127.0.0.1:4041` URL and you could visualize all Pods, Containers, Controllers, etc. of your OpenShift Cluster.
 
-__NodePort Services__
+__LoadBalancer and NodePort Service__
 
-Add a new LoadBalancer Service to expose `weave-scope-app` service:
+Add a new `LoadBalancer` or `NodePort` Service to expose `weave-scope-app` service:
 ```
 $ oc apply -f ${ANSIBLE_ROLES_PATH}/chilcano.weave-scope/sample-2-kube-weavescope-lb.yml
 ```

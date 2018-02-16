@@ -6,8 +6,13 @@ weave_scope_defaults:
     admin_usr: "system:admin"
     admin_pwd: anypassword
     hostname: openshift0
-    project: "weave"  ## it was weave-scope
-  repo: https://cloud.weave.works/k8s/scope.yaml   ## latest (if version > 1.7.0, then namespace/project must be 'weave'. It has been defined as default)
+    project: "weave"  ## default is 'weave' in version > 1.7.0)
+    sa: "weave-scope" ## default service account
+  repo: https://cloud.weave.works/k8s/scope.yaml   ## ClusterIP and latest version for OpenShift
+  #repo: https://cloud.weave.works/k8s/scope.yaml?k8s-service-type=NodePort&v=latest
+  #repo: https://cloud.weave.works/k8s/scope.yaml?k8s-service-type=LoadBalancer&v=1.7.1
+  #repo: "{{ role_path }}/files/scope_1.7.1.yaml"
+  #repo: "{{ role_path }}/files/scope_1.6.7.yaml"
   dir:
     local_repo: /Users/Chilcano/Downloads/__kube_repo
     local_tmp: /Users/Chilcano/Downloads/__kube_tmp

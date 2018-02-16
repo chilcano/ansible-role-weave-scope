@@ -1,26 +1,26 @@
 ## to do login as 'system:admin' previously
 
-- name: deploy | Check if exists namespace/project 'weave-scope'
+- name: deploy | Check if exists namespace/project '{{ __weavescope.openshift.project }}'
   command: "{{ my_oc }} get projects"
   register: openshift_projects
 
-- name: deploy | Defining the Weave-Scope namespace/project regex
+- name: deploy | Defining the Weave Scope namespace/project regex
   set_fact:
     regex_weave_scope_prj: "{{ __weavescope.openshift.project }}(.+)Active"
 
-- name: deploy | Create new namespace/project 'weave-scope'
+- name: deploy | Create new namespace/project '{{ __weavescope.openshift.project }}'
   command: "{{ my_oc }} new-project {{ __weavescope.openshift.project }}"
   when: not openshift_projects.stdout | regex_search(regex_weave_scope_prj)
 
-- name: deploy | Switch to namespace/project 'weave-scope'
+- name: deploy | Switch to namespace/project '{{ __weavescope.openshift.project }}'
   command: "{{ my_oc }} project {{ __weavescope.openshift.project }}"
   when: openshift_projects.stdout | regex_search(regex_weave_scope_prj)
 
-- name: deploy | Preparing namespace/project 'weave-scope'
+- name: deploy | Preparing namespace/project '{{ __weavescope.openshift.project }}'
   command: "{{ item }}"
   with_items:
-    - "{{ my_oc }} adm policy add-cluster-role-to-user cluster-admin -z {{ __weavescope.openshift.project }}"
-    - "{{ my_oc }} adm policy add-scc-to-user privileged -z {{ __weavescope.openshift.project }}"
+    - "{{ my_oc }} adm policy add-cluster-role-to-user cluster-admin -z {{ __weavescope.openshift.sa }}"
+    - "{{ my_oc }} adm policy add-scc-to-user privileged -z {{ __weavescope.openshift.sa }}"
     - "{{ my_oc }} adm policy add-scc-to-user anyuid -z default"
 
 - name: deploy | Install Weave-Scope

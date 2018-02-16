@@ -16,6 +16,6 @@
           admin_usr: "system:admin"
           admin_pwd: anypassword
           hostname: "{{ vm }}"
-          project: weave-scope
-        #repo: https://cloud.weave.works/k8s/scope.yaml   ## latest (if version > 1.7.0, then namespace/project must be 'weave'. It has been defined as default)
-        repo: /Users/Chilcano/Downloads/__kube_repo/weave-scope/scope_1.6.7.yaml
+          project: weave # overwriting namespace (default is 'weave' in version > 1.7.0)
+        #repo: https://cloud.weave.works/k8s/scope.yaml # latest for OpenShift
+        repo: "{{ role_path }}/files/scope_1.7.1.yaml"
