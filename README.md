@@ -85,18 +85,18 @@ __LoadBalancer and NodePort Service__
 
 Add a new `LoadBalancer` or `NodePort` Service to expose `weave-scope-app` service:
 ```
-$ oc apply -f ${ANSIBLE_ROLES_PATH}/chilcano.weave-scope/sample-2-kube-weavescope-lb.yml
+$ oc apply -f ${ANSIBLE_ROLES_PATH}/chilcano.weave-scope/sample-2-weave-scope-app-svc.yml
 ```
 
 For example:
 ```
-$ oc apply -f /etc/ansible/roles/chilcano.weave-scope/sample-2-kube-weavescope-lb.yml -n weave-scope
-service "weave-scope-app-lb" created
+$ oc apply -f /etc/ansible/roles/chilcano.weave-scope/sample-2-weave-scope-app-svc.yml -n weave-scope
+service "weave-scope-app-svc" created
 ```
 
 Now open the Weave Scope from Minishift automatically:
 ```
-$ minishift openshift service weave-scope-app-lb --in-browser -n weave-scope
+$ minishift openshift service weave-scope-app-svc --in-browser -n weave-scope
 Opening the route/NodePort http://192.168.99.100:32689 in the default browser...
 ```
 
@@ -105,7 +105,7 @@ Or open it manually:
 $ eval $(minishift oc-env)
 $ oc login -u system:admin
 
-$ oc get svc/weave-scope-app-lb -o yaml -n weave-scope | grep -i nodeport
+$ oc get svc/weave-scope-app-svc -o yaml -n weave-scope | grep -i nodeport
     nodePort: 32689
 
 $ minishift ip

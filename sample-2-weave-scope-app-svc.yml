@@ -1,23 +1,21 @@
-# oc apply -f ~/1github-repo/ansible-role-weave-scope/sample-2-kube-weavescope-lb.yml -n weave-scope
-# kubectl apply -f ~/1github-repo/ansible-role-weave-scope/sample-2-kube-weavescope-lb.yml -n weave
 apiVersion: v1
 kind: Service
 metadata:
-  name: weave-scope-app-lb
+  name: weave-scope-app-svc
   labels:
     app: weave-scope
     name: weave-scope-app
     weave-cloud-component: scope
     weave-scope-component: app
 spec:
-  type: LoadBalancer
-  #type: NodePort
+  #type: LoadBalancer
+  type: NodePort
   ports:
   - name: app
     port: 80
     protocol: TCP
     targetPort: 4040
-    #nodePort: 30002  ## forces to assign this port
+    nodePort: 30002  ## forces to assign this port
   selector:
     app: weave-scope
     name: weave-scope-app
